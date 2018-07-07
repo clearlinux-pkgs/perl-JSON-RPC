@@ -1,0 +1,10 @@
+libjson-rpc-perl (1.03-1) experimental; urgency=low
+
+  (New) Upstream says:
+
+  JSON::RPC has been re-written and re-worked. It's a completely different
+  code base now, and because the old code pre dates PSGI/Plack, we figured it
+  was not worth making things API compatible. So if you have code that uses
+  this old code and upgrade, YOUR CODE WILL BREAK!
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 26 Nov 2011 21:25:52 +0100
