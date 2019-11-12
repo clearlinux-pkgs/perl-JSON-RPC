@@ -4,7 +4,7 @@
 #
 Name     : perl-JSON-RPC
 Version  : 1.06
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/D/DM/DMAKI/JSON-RPC-1.06.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DM/DMAKI/JSON-RPC-1.06.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libj/libjson-rpc-perl/libjson-rpc-perl_1.06-2.debian.tar.xz
@@ -12,6 +12,9 @@ Summary  : 'JSON RPC 2.0 Server Implementation'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-JSON-RPC-license = %{version}-%{release}
+Requires: perl-JSON-RPC-perl = %{version}-%{release}
+Requires: perl(Apache2::Const)
+Requires: perl(Plack::Request)
 BuildRequires : buildreq-cpan
 
 %description
@@ -26,6 +29,7 @@ use JSON::RPC::Dispatch;
 Summary: dev components for the perl-JSON-RPC package.
 Group: Development
 Provides: perl-JSON-RPC-devel = %{version}-%{release}
+Requires: perl-JSON-RPC = %{version}-%{release}
 
 %description dev
 dev components for the perl-JSON-RPC package.
@@ -39,18 +43,28 @@ Group: Default
 license components for the perl-JSON-RPC package.
 
 
+%package perl
+Summary: perl components for the perl-JSON-RPC package.
+Group: Default
+Requires: perl-JSON-RPC = %{version}-%{release}
+
+%description perl
+perl components for the perl-JSON-RPC package.
+
+
 %prep
 %setup -q -n JSON-RPC-1.06
-cd ..
-%setup -q -T -D -n JSON-RPC-1.06 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libjson-rpc-perl_1.06-2.debian.tar.xz
+cd %{_builddir}/JSON-RPC-1.06
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/JSON-RPC-1.06/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/JSON-RPC-1.06/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -62,7 +76,8 @@ fi
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-JSON-RPC
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-JSON-RPC/LICENSE
+cp %{_builddir}/JSON-RPC-1.06/LICENSE %{buildroot}/usr/share/package-licenses/perl-JSON-RPC/b521ffb0d39409ed04226ace1a30c1835e04ba62
+cp %{_builddir}/JSON-RPC-1.06/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-JSON-RPC/20c6cfc967977049efff30eec694ce3d5a2fe8b2
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -75,19 +90,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC.pm
-/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Constants.pm
-/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Dispatch.pm
-/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy.pm
-/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy/Client.pm
-/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy/Procedure.pm
-/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy/Server.pm
-/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy/Server/Apache2.pm
-/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy/Server/CGI.pm
-/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy/Server/Daemon.pm
-/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Parser.pm
-/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Procedure.pm
-/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Test.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -107,4 +109,21 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-JSON-RPC/LICENSE
+/usr/share/package-licenses/perl-JSON-RPC/20c6cfc967977049efff30eec694ce3d5a2fe8b2
+/usr/share/package-licenses/perl-JSON-RPC/b521ffb0d39409ed04226ace1a30c1835e04ba62
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC.pm
+/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Constants.pm
+/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Dispatch.pm
+/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy.pm
+/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy/Client.pm
+/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy/Procedure.pm
+/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy/Server.pm
+/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy/Server/Apache2.pm
+/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy/Server/CGI.pm
+/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Legacy/Server/Daemon.pm
+/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Parser.pm
+/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Procedure.pm
+/usr/lib/perl5/vendor_perl/5.28.2/JSON/RPC/Test.pm
