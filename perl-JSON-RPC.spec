@@ -4,7 +4,7 @@
 #
 Name     : perl-JSON-RPC
 Version  : 1.06
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/D/DM/DMAKI/JSON-RPC-1.06.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DM/DMAKI/JSON-RPC-1.06.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libj/libjson-rpc-perl/libjson-rpc-perl_1.06-2.debian.tar.xz
@@ -77,7 +77,7 @@ fi
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-JSON-RPC
 cp %{_builddir}/JSON-RPC-1.06/LICENSE %{buildroot}/usr/share/package-licenses/perl-JSON-RPC/b521ffb0d39409ed04226ace1a30c1835e04ba62
-cp %{_builddir}/JSON-RPC-1.06/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-JSON-RPC/20c6cfc967977049efff30eec694ce3d5a2fe8b2
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-JSON-RPC/20c6cfc967977049efff30eec694ce3d5a2fe8b2
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -114,16 +114,16 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/JSON/RPC.pm
-/usr/lib/perl5/vendor_perl/5.30.1/JSON/RPC/Constants.pm
-/usr/lib/perl5/vendor_perl/5.30.1/JSON/RPC/Dispatch.pm
-/usr/lib/perl5/vendor_perl/5.30.1/JSON/RPC/Legacy.pm
-/usr/lib/perl5/vendor_perl/5.30.1/JSON/RPC/Legacy/Client.pm
-/usr/lib/perl5/vendor_perl/5.30.1/JSON/RPC/Legacy/Procedure.pm
-/usr/lib/perl5/vendor_perl/5.30.1/JSON/RPC/Legacy/Server.pm
-/usr/lib/perl5/vendor_perl/5.30.1/JSON/RPC/Legacy/Server/Apache2.pm
-/usr/lib/perl5/vendor_perl/5.30.1/JSON/RPC/Legacy/Server/CGI.pm
-/usr/lib/perl5/vendor_perl/5.30.1/JSON/RPC/Legacy/Server/Daemon.pm
-/usr/lib/perl5/vendor_perl/5.30.1/JSON/RPC/Parser.pm
-/usr/lib/perl5/vendor_perl/5.30.1/JSON/RPC/Procedure.pm
-/usr/lib/perl5/vendor_perl/5.30.1/JSON/RPC/Test.pm
+/usr/lib/perl5/vendor_perl/5.30.2/JSON/RPC.pm
+/usr/lib/perl5/vendor_perl/5.30.2/JSON/RPC/Constants.pm
+/usr/lib/perl5/vendor_perl/5.30.2/JSON/RPC/Dispatch.pm
+/usr/lib/perl5/vendor_perl/5.30.2/JSON/RPC/Legacy.pm
+/usr/lib/perl5/vendor_perl/5.30.2/JSON/RPC/Legacy/Client.pm
+/usr/lib/perl5/vendor_perl/5.30.2/JSON/RPC/Legacy/Procedure.pm
+/usr/lib/perl5/vendor_perl/5.30.2/JSON/RPC/Legacy/Server.pm
+/usr/lib/perl5/vendor_perl/5.30.2/JSON/RPC/Legacy/Server/Apache2.pm
+/usr/lib/perl5/vendor_perl/5.30.2/JSON/RPC/Legacy/Server/CGI.pm
+/usr/lib/perl5/vendor_perl/5.30.2/JSON/RPC/Legacy/Server/Daemon.pm
+/usr/lib/perl5/vendor_perl/5.30.2/JSON/RPC/Parser.pm
+/usr/lib/perl5/vendor_perl/5.30.2/JSON/RPC/Procedure.pm
+/usr/lib/perl5/vendor_perl/5.30.2/JSON/RPC/Test.pm
