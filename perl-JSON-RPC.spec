@@ -4,7 +4,7 @@
 #
 Name     : perl-JSON-RPC
 Version  : 1.06
-Release  : 17
+Release  : 18
 URL      : https://cpan.metacpan.org/authors/id/D/DM/DMAKI/JSON-RPC-1.06.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DM/DMAKI/JSON-RPC-1.06.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libj/libjson-rpc-perl/libjson-rpc-perl_1.06-2.debian.tar.xz
