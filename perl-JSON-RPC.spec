@@ -4,7 +4,7 @@
 #
 Name     : perl-JSON-RPC
 Version  : 1.06
-Release  : 20
+Release  : 21
 URL      : https://cpan.metacpan.org/authors/id/D/DM/DMAKI/JSON-RPC-1.06.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DM/DMAKI/JSON-RPC-1.06.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libj/libjson-rpc-perl/libjson-rpc-perl_1.06-2.debian.tar.xz
@@ -114,16 +114,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/JSON/RPC.pm
-/usr/lib/perl5/vendor_perl/5.34.0/JSON/RPC/Constants.pm
-/usr/lib/perl5/vendor_perl/5.34.0/JSON/RPC/Dispatch.pm
-/usr/lib/perl5/vendor_perl/5.34.0/JSON/RPC/Legacy.pm
-/usr/lib/perl5/vendor_perl/5.34.0/JSON/RPC/Legacy/Client.pm
-/usr/lib/perl5/vendor_perl/5.34.0/JSON/RPC/Legacy/Procedure.pm
-/usr/lib/perl5/vendor_perl/5.34.0/JSON/RPC/Legacy/Server.pm
-/usr/lib/perl5/vendor_perl/5.34.0/JSON/RPC/Legacy/Server/Apache2.pm
-/usr/lib/perl5/vendor_perl/5.34.0/JSON/RPC/Legacy/Server/CGI.pm
-/usr/lib/perl5/vendor_perl/5.34.0/JSON/RPC/Legacy/Server/Daemon.pm
-/usr/lib/perl5/vendor_perl/5.34.0/JSON/RPC/Parser.pm
-/usr/lib/perl5/vendor_perl/5.34.0/JSON/RPC/Procedure.pm
-/usr/lib/perl5/vendor_perl/5.34.0/JSON/RPC/Test.pm
+/usr/lib/perl5/*
